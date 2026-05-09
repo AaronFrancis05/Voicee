@@ -41,3 +41,12 @@ app-example
 # generated native folders
 /ios
 /android
+
+# IDE
+.idea/
+/shelf/
+/workspace.xml
+/httpRequests/
+/queries/
+/dataSources/
+/dataSources.local.xml
