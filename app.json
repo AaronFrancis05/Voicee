@@ -39,7 +39,18 @@
             "backgroundColor": "#000000"
           }
         }
-      ]
+      ],
+      ["expo-font",{
+        "fonts": [
+          "../assets/fonts/Ubuntu-Bold.ttf",
+          "../assets/fonts/Ubuntu-Light.ttf",
+          "../assets/fonts/Ubuntu-Medium.ttf",
+          "../assets/fonts/Ubuntu-Regular.ttf",
+          "../assets/fonts/Ubuntu-BoldItalic.ttf",
+          "../assets/fonts/Ubuntu-LightItalic.ttf"
+
+        ]
+      }]
     ],
     "experiments": {
       "typedRoutes": true,

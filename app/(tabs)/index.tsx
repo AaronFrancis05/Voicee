@@ -4,9 +4,9 @@ import {SafeAreaView} from "react-native-safe-area-context";
 export default function Index() {
   return (
     <SafeAreaView
-      className="flex-1 items-center text-red-500 justify-center bg-orange-500"
+      className="flex-1 bg-primary"
     >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+      <Text className="text-red-500">Welcome to Voice</Text>
     </SafeAreaView>
   );
 }
