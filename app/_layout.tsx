@@ -1,8 +1,33 @@
-import { Stack } from "expo-router";
+import { Stack, SplashScreen, useRouter, useSegments } from "expo-router";
 import "@/global.css"
 import {useFonts} from "expo-font"
 import { useEffect } from "react";
-import * as SplashScreen from "expo-splash-screen";
+import { ClerkProvider, ClerkLoaded, useAuth } from "@clerk/expo";
+import tokenCache from "@/lib/tokenCache";
+
+const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
+
+function InitialLayout() {
+  const { isLoaded, isSignedIn } = useAuth();
+  const segments = useSegments();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isLoaded) return;
+
+    const inAuthGroup = segments[0] === "(auth)";
+
+    if (isSignedIn && inAuthGroup) {
+      router.replace("/(tabs)");
+    } else if (!isSignedIn && !inAuthGroup) {
+      router.replace("/(auth)/sign-in");
+    }
+  }, [isSignedIn, segments, isLoaded]);
+
+  if (!isLoaded) return null;
+
+  return <Stack screenOptions={{ headerShown: false }} />;
+}
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -15,11 +40,21 @@ export default function RootLayout() {
   })
   useEffect(() => {
     if(fontsLoaded){
-      SplashScreen.hideAsync()
+      SplashScreen.hideAsync();
     }
-
   }, [fontsLoaded]);
 
-  if(!fontsLoaded) return null;
-  return <Stack screenOptions={{headerShown:false}} />;
+  // if(!fontsLoaded) return null;
+
+  if (!publishableKey) {
+    return null;
+  }
+
+  return (
+    <ClerkProvider publishableKey={publishableKey} tokenCache={tokenCache}>
+      <ClerkLoaded>
+        <InitialLayout />
+      </ClerkLoaded>
+    </ClerkProvider>
+  );
 }

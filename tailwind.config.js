@@ -19,13 +19,10 @@ module.exports = {
         subscription: "#8fd1bd",
       },
       fontFamily: {
-        sans: ["sans-regular"],
-        "sans-light": ["sans-light"],
-        "sans-regular": ["sans-regular"],
-        "sans-medium": ["sans-medium"],
-        "sans-semibold": ["sans-semibold"],
-        "sans-bold": ["sans-bold"],
-        "sans-extrabold": ["sans-extrabold"],
+        ubuntu: ["Ubuntu-Regular","sans-serif"],
+        "ubuntu-light": ["Ubuntu-Light"],
+        "ubuntu-bold": ["Ubuntu-Bold"],
+        "ubuntu-medium": ["Ubuntu-Medium"],
       },
       spacing: {
         0: 0,
